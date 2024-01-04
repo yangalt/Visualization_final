@@ -68,6 +68,8 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/all_s
     const updatedData = filterData(data, selectedLocation);
     plot.data(updatedData);
     svg.call(plot);
+    leg.player(player);
+    legend.call(leg);
   }
 
   function filterData(originalData, location) {
@@ -205,6 +207,8 @@ const legendChart = (d3, hexbin, colors) => {
       .attr("transform", (d, i) => `translate(${i * 19 + 150},${35})`)
       .attr("d", d => hexbin.hexagon(10))
       .attr("fill", d => colors(d.value * 0.01));
+
+    selection.selectAll(".player").remove();
 
     selection.append("text")
       .attr("class", "player")

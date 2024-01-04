@@ -32,7 +32,7 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
 
     });
     var filteredDatas = data.filter(d => d['PLAYER_NAME'] === 'Luka Doncic');
-    console.log(filteredDatas)
+    //console.log(filteredDatas)
 
     const maxValues = {};
     features.forEach(feature => {
@@ -53,10 +53,10 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
         });
         return normalizedEntry;
     });
-    console.log(normalized_data)
+    //console.log(normalized_data)
 
     var filteredData = normalized_data.filter(d => d['PLAYER_NAME'] === 'Luka Doncic');
-    console.log(filteredData)
+    //console.log(filteredData)
 
     const radarChartData = filteredData.map(d => (
         features.map(feature => ({
@@ -65,7 +65,7 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
         }))
     ));
 
-    console.log(radarChartData);
+    //console.log(radarChartData);
 
     var margin = { top: 50, right: 100, bottom: 10, left: 100 },
         width = Math.min(700, window.innerWidth - 700) - margin.left - margin.right,
@@ -106,7 +106,7 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
             roundStrokes: false,	//If true the area and stroke will follow a round path (cardinal-closed)
             color: colorScale	//Color function
         };
-        console.log(data)
+        //console.log(data)
 
         //Put all of the options into a variable called cfg
         if ('undefined' !== typeof options) {
@@ -188,7 +188,7 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
             .style("font-size", "10px")
             .attr("fill", "#737373")
             .text(function (d, i) { return maxValue * d / cfg.levels; });
-        console.log(maxValues)
+        //console.log(maxValues)
 
 
         /////////////////////////////////////////////////////////
@@ -435,12 +435,9 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
     // 在輸入框內容發生變化時觸發的事件
     playerSearchInput.addEventListener('input', function (event) {
         var playerNamePrefix = event.target.value;
-
-        // 使用輸入的前綴過濾球員名稱
         var matchingPlayers = getMatchingPlayers(playerNamePrefix);
         matchingPlayersContainer.innerHTML = '';
 
-        // 將匹配的球員名稱添加到顯示元素中
         matchingPlayers.forEach(function (player) {
             var playerElement = document.createElement('div');
             playerElement.textContent = player;
@@ -459,10 +456,11 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
         var selectedPlayer = event.target.textContent;
         playerSearchInput.value = selectedPlayer;
         updateRadarChart(selectedPlayer);
+        var changeEvent = new Event('change');
+        playerSearchInput.dispatchEvent(changeEvent);
         matchingPlayersContainer.style.display = 'none';
     });
 
-    // 根據輸入的前綴返回匹配的球員名稱列表
     function getMatchingPlayers(prefix) {
         var uniquePlayers = new Set();
 
@@ -517,8 +515,9 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/resul
                 });
                 return normalizedEntry;
             });
-            console.log(normalized_data)
+            //console.log(normalized_data)
             var filteredDatas = data.filter(d => d['PLAYER_NAME'] === playerName);
+            console.log(filteredDatas)
             var filteredData = normalized_data.filter(d => d['PLAYER_NAME'] === playerName);
 
             const radarChartData = filteredData.map(d => (

@@ -1,5 +1,5 @@
 const playerSearchInput = document.getElementById('playerSearch');
-const player = playerSearchInput.value;
+let player = playerSearchInput.value;
 const width = 500;
 const height = 470;
 
@@ -32,7 +32,11 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/all_s
     d['QUARTER_FG_PCT'] = +d['QUARTER_FG_PCT'];
     d['HOME_FG_PCT'] = +d['HOME_FG_PCT'];
   });
-
+  document.getElementById('playerSearch').addEventListener('change', function () {
+    player = this.value;
+    console.log(player); // 在控制台輸出球員姓名
+    updateData();
+  });
   let selectedLocation = "All";
   const quarterDropdown = document.getElementById("quarterDropdown");
 
@@ -44,6 +48,16 @@ d3.csv("https://raw.githubusercontent.com/yangalt/Visualization_final/main/all_s
 
   document.getElementById("locationQuarterDropdown").addEventListener("change", function () {
     selectedLocation = this.value;
+    updateData();
+  });
+
+  document.getElementById("dropdownMenu").addEventListener("change", function () {
+    if (this.value === "Location") {
+      selectedLocation = "All";
+    } else if (this.value === "Quarter") {
+      selectedLocation = "1";
+    }
+    console.log(selectedLocation)
     updateData();
   });
 

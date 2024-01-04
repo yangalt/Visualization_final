@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+}
+
+
+text {
+  font-size: 24px;
+}
+
+.container {
+  display: flex;
+}
+
+.court-svg {
+  transform: rotate(180deg);
+}
+
+.bg {
+  fill: #e1cec3;
+  ;
+}
+
+.court {
+  fill: #6a6d73;
+}
+
+.hex {}
+
+.legend-title {
+  font-size: 1.2rem;
+  background-color: "black";
+}
+
+.player {
+  font-size: 2.1rem;
+  color: #fff
+}
+
+.percent-text {
+  font-size: .7rem;
+}
